@@ -8,12 +8,15 @@ import json
 
 files = ['regular', 'irregular']
 
+data = {'verbTypes': ['Lorem', 'ipsum', 'some', 'other']}
+
 for file in files:
     p_list = plistlib.readPlist("%s.plist"%file)
-    json_data = json.dumps(p_list)
+    data[file] = p_list
 
-    with io.open('filename', 'w', encoding='utf8') as json_file:
-        data = json.dumps(p_list, ensure_ascii=False)
-        # unicode(data) auto-decodes data to unicode if str
-        json_file.write(data)
+
+with io.open('combined.json', 'w', encoding='utf8') as json_file:
+    json_data = json.dumps(data, sort_keys=True, indent=4, ensure_ascii=False)
+    # unicode(data) auto-decodes data to unicode if str
+    json_file.write(json_data)
 
