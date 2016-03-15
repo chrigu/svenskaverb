@@ -7,6 +7,7 @@ import { TrainerComponent } from './trainer/trainer.component';
 
 //CSS
 require('./static/styles/main.scss');
+require('./static/data/verbs.json');
 
 ////general vendor libs
 //import 'lodash';

@@ -100,7 +100,8 @@ module.exports = {
             },
 
             // Support for *.json files.
-            { test: /\.json$/,  loader: 'json-loader' },
+            //{ test: /\.json$/,  loader: 'json-loader' },
+            { test: /\.json$/, loader: 'file?name=data/[name].[ext]'  },
 
             // Support for CSS as raw text
             { test: /\.css$/,   loader: 'raw-loader' },

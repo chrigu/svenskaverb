@@ -45,7 +45,7 @@ module.exports = {
 
     resolve: {
         // ensure loader extensions match
-        extensions: prepend(['.ts','.js','.json','.css','.html'], '.async') // ensure .async.ts etc also works
+        extensions: prepend(['.ts','.js','.css','.html'], '.async') // ensure .async.ts etc also works
     },
 
     module: {
@@ -62,7 +62,8 @@ module.exports = {
             { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e|async)\.ts$/ ] },
 
             // Support for *.json files.
-            { test: /\.json$/,  loader: 'json-loader' },
+            //{ test: /\.json$/,  loader: 'json-loader' },
+            { test: /\.json$/, loader: 'file?name=data/[name].[ext]'  },
 
             // Support for CSS as raw text
             { test: /\.css$/,   loader: 'raw-loader' },
@@ -83,7 +84,7 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(true),
         new webpack.optimize.CommonsChunkPlugin({ name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }),
         // static assets
-        new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
+        new CopyWebpackPlugin([ { from: 'src/static/data', to: 'data' } ]),
         // generating html
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         // replace

@@ -2,7 +2,6 @@
  * Created by christiancueni on 15/03/16.
  */
 import { Injectable } from 'angular2/core';
-import * as _ from 'lodash';
 import {Observable} from 'rxjs/Observable';
 import { Http, Response } from 'angular2/http';
 
@@ -10,12 +9,12 @@ import { Http, Response } from 'angular2/http';
 @Injectable()
 export class VerbService {
 
-    private booksUrl = '/app/trainer/verbs.json';
+    private verbUrl = '/data/verbs.json';
 
     constructor (private http: Http) {}
 
     loadVerbs():Observable<any>  {
-        return this.http.get(this.booksUrl)
+        return this.http.get(this.verbUrl)
             .map(res =>  res.json())
             .catch(this.handleError);
     }
