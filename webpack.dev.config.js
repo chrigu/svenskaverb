@@ -16,6 +16,9 @@ var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8888;
 
 var metadata = {
+    baseUrl: '/',
+    host: HOST,
+    port: PORT,
     ENV: ENV
 };
 /*
@@ -88,9 +91,7 @@ module.exports = {
             // Environment helpers
             'process.env': {
                 'ENV': JSON.stringify(metadata.ENV),
-                'NODE_ENV': JSON.stringify(metadata.ENV),
-                'ELASTIC_URL': JSON.stringify(ELASTIC_SERVICE_URL),
-                'SEARCH_URL': JSON.stringify(SEARCH_SERVICE_URL)
+                'NODE_ENV': JSON.stringify(metadata.ENV)
             }
         }),
     ],

@@ -28,9 +28,6 @@ if ('production' === process.env.ENV) {
     // In development we are including every operator
 
     // Observable Operators
-    require('rxjs/add/operator/combineLatest-static');
-    require('rxjs/add/operator/concat-static');
-    require('rxjs/add/operator/merge-static');
     require('rxjs/add/observable/bindCallback');
     require('rxjs/add/observable/defer');
     require('rxjs/add/observable/empty');
@@ -45,7 +42,6 @@ if ('production' === process.env.ENV) {
     require('rxjs/add/observable/range');
     require('rxjs/add/observable/throw');
     require('rxjs/add/observable/timer');
-    require('rxjs/add/operator/zip-static');
 
     // Operators
     require('rxjs/add/operator/buffer');
