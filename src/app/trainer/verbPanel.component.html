@@ -1,0 +1,11 @@
+<div *ngIf="verb" class="verb-panel">
+    <p>{{verb.verbs[0]}}</p>
+    <dl class="definitions" [ngClass]="{'is-hidden': showSolution}">
+        <dt>Form1</dt>
+        <dd>{{verb.verbs[1]}}</dd>
+        <dt>Form2</dt>
+        <dd>{{verb.verbs[2]}}</dd>
+        <dt>Form3</dt>
+        <dd>{{verb.verbs[3]}}</dd>
+    </dl>
+</div>

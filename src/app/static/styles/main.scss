@@ -1,3 +1,5 @@
-.some {
-  color: blue;
+.definitions {
+  &.is-hidden {
+    display: none;
+  }
 }

@@ -13,7 +13,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 var HOST = process.env.HOST || 'localhost';
-var PORT = process.env.PORT || 8888;
+var PORT = process.env.PORT || 3000;
 
 var metadata = {
     baseUrl: '/',

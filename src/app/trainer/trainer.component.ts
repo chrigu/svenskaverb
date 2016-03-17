@@ -1,22 +1,33 @@
 import {Component} from 'angular2/core'
+import {Observable} from "rxjs/Observable";
 import {VerbService} from '../services/verb.service';
 import {LanguageSelectorComponent} from './langSelector.component';
-import {Observable} from "rxjs/Observable";
+import {VerbPanelComponent} from './verbPanel.component';
 
 @Component({
     selector: 'trainer',
-    directives: [LanguageSelectorComponent],
+    directives: [LanguageSelectorComponent, VerbPanelComponent],
     providers: [VerbService],
     template: require('./trainer.component.html')
 })
 
 export class TrainerComponent
 {
-    private verbList$:Observable<Object>;
+    private currentVerb$:Observable<Object>;
+    private verbState:boolean = true;
 
     constructor(private verbService:VerbService) {
-        console.log(this.verbService.getVerb());
-        this.verbService.getRandomVerb().subscribe( data => console.log(data));
+        this.currentVerb$ = this.verbService.newVerb$;
+        this.verbService.getVerb();
+    }
+
+    showSolution() {
+        this.verbState = false;
+    }
+
+    getNewVerb() {
+        this.verbService.getVerb();
+        this.verbState = true;
     }
 
     changeLanguage(lang:string) {

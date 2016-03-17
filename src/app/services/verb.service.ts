@@ -3,6 +3,7 @@
  */
 import { Injectable } from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/subject/BehaviorSubject';
 import { Http, Response } from 'angular2/http';
 
 
@@ -11,25 +12,24 @@ export class VerbService {
 
     private verbUrl = '/data/verbs.json';
     private verbs:Object[] = [];
+    public newVerb$ = new BehaviorSubject<Object>(null);
 
-    constructor (private http: Http) {}
+    constructor (private http: Http) {
+        this.loadVerbs().subscribe(x => console.log(x));
+    }
 
-    loadVerbs()  {
+    private loadVerbs()  {
         return this.http.get(this.verbUrl)
             .map(res => res.json())
             .catch(this.handleError)
             .map((list) => {
-
                 this.verbs = [];
-
                 for (let key in list) {
-                    console.log(key);
                     let verbs = list[key].map((verb) => {
-                        let verbObj = {
+                        return {
                             verbs: verb,
                             type: key
                         };
-                        return verbObj;
                     });
                     this.verbs = this.verbs.concat(verbs);
                 }
@@ -37,16 +37,18 @@ export class VerbService {
             });
     }
 
-    getVerb() {
-        console.log(Math.floor(Math.random() * this.verbs.length));
+    private getRandomVerb() {
         return this.verbs[Math.floor(Math.random() * this.verbs.length)];
     }
 
-    getRandomVerb():Observable<any> {
+    getVerb() {
         if (this.verbs.length === 0) {
-            return this.loadVerbs()
+            this.loadVerbs()
+                .subscribe((verbs) => {
+                    this.newVerb$.next(this.getRandomVerb());
+                });
         } else {
-            return Observable.of(this.verbs);
+            this.newVerb$.next(this.getRandomVerb());
         }
     }
 

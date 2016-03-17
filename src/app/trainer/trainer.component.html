@@ -1,4 +1,7 @@
 <div class="trainer">
     <h1>trainer</h1>
     <lang-selector (onChange)="changeLanguage($event)"></lang-selector>
+    <verb-panel [verb]="currentVerb$ | async" [showSolution]="verbState"></verb-panel>
+    <button *ngIf="verbState" (click)="showSolution()" class="btn btn-primary">Lösung</button>
+    <button *ngIf="!verbState" (click)="getNewVerb()" class="btn btn-primary">Neues Verb</button>
 </div>
