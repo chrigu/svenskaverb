@@ -15,8 +15,8 @@ export class TrainerComponent
     private verbList$:Observable<Object>;
 
     constructor(private verbService:VerbService) {
-        this.verbList$ = this.verbService.loadVerbs();
-        this.verbList$.subscribe( data => console.log(data));
+        console.log(this.verbService.getVerb());
+        this.verbService.getRandomVerb().subscribe( data => console.log(data));
     }
 
     changeLanguage(lang:string) {

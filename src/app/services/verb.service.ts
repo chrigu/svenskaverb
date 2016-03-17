@@ -10,13 +10,44 @@ import { Http, Response } from 'angular2/http';
 export class VerbService {
 
     private verbUrl = '/data/verbs.json';
+    private verbs:Object[] = [];
 
     constructor (private http: Http) {}
 
-    loadVerbs():Observable<any>  {
+    loadVerbs()  {
         return this.http.get(this.verbUrl)
-            .map(res =>  res.json())
-            .catch(this.handleError);
+            .map(res => res.json())
+            .catch(this.handleError)
+            .map((list) => {
+
+                this.verbs = [];
+
+                for (let key in list) {
+                    console.log(key);
+                    let verbs = list[key].map((verb) => {
+                        let verbObj = {
+                            verbs: verb,
+                            type: key
+                        };
+                        return verbObj;
+                    });
+                    this.verbs = this.verbs.concat(verbs);
+                }
+                return this.verbs;
+            });
+    }
+
+    getVerb() {
+        console.log(Math.floor(Math.random() * this.verbs.length));
+        return this.verbs[Math.floor(Math.random() * this.verbs.length)];
+    }
+
+    getRandomVerb():Observable<any> {
+        if (this.verbs.length === 0) {
+            return this.loadVerbs()
+        } else {
+            return Observable.of(this.verbs);
+        }
     }
 
     private handleError (error: Response) {

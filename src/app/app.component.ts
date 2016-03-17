@@ -9,11 +9,6 @@ import { TrainerComponent } from './trainer/trainer.component';
 require('./static/styles/main.scss');
 require('./static/data/verbs.json');
 
-////general vendor libs
-//import 'lodash';
-//import 'moment';
-//import 'ng2-bootstrap/ng2-bootstrap';
-//import '@ngrx/store';
 
 @Component({
     selector: 'app',
