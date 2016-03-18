@@ -22,8 +22,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 /* constants */
 
 var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-var HOST = process.env.HOST || 'localhost';
-var PORT = process.env.PORT || 8888;
+var HOST = process.env.HOST || 'www.svenskaverb.ch';
+var PORT = process.env.PORT || 80;
 
 var metadata = {
     baseUrl: '/',
@@ -39,7 +39,7 @@ module.exports = {
     // static data for index.html
     metadata: metadata,
     // for faster builds use 'eval'
-    devtool: 'source-map',
+    //devtool: 'source-map',
     debug: false,
 
     entry: {
@@ -118,7 +118,7 @@ module.exports = {
     },
 
     plugins: [
-        new ExtractTextPlugin("siroopadmin.css"),
+        new ExtractTextPlugin("svenskaverb.css"),
         new WebpackMd5Hash(),
         new DedupePlugin(),
         new OccurenceOrderPlugin(true),

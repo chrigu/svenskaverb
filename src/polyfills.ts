@@ -13,6 +13,7 @@ if ('production' === process.env.ENV) {
     // RxJS
     // In production manually include the operators you use
     require('rxjs/add/operator/map');
+    require('rxjs/add/operator/catch');
 
 } else {
     // Reflect Polyfill

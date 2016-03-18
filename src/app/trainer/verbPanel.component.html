@@ -1,11 +1,13 @@
 <div *ngIf="verb" class="verb-panel">
-    <p>{{verb.verbs[0]}}</p>
+    <p class="verb-question">{{verb.verbs[0]}}</p>
     <dl class="definitions" [ngClass]="{'is-hidden': showSolution}">
-        <dt>Form1</dt>
+        <dt>Infinitiv</dt>
         <dd>{{verb.verbs[1]}}</dd>
-        <dt>Form2</dt>
+        <dt>Präsens</dt>
         <dd>{{verb.verbs[2]}}</dd>
-        <dt>Form3</dt>
+        <dt>Präteritum</dt>
         <dd>{{verb.verbs[3]}}</dd>
+        <dt>Supinum</dt>
+        <dd>{{verb.verbs[4]}}</dd>
     </dl>
 </div>

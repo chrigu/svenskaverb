@@ -3,7 +3,7 @@
  */
 import {provide, enableProdMode} from 'angular2/core';
 import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
+//import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {App} from './app/app.component';
 
@@ -22,8 +22,8 @@ if ('production' === process.env.ENV) {
 document.addEventListener('DOMContentLoaded', function main() {
     bootstrap(App, [
         ...ENV_PROVIDERS,
-        ...HTTP_PROVIDERS,
-        ...ROUTER_PROVIDERS
+        ...HTTP_PROVIDERS
+        //...ROUTER_PROVIDERS
     ])
         .catch(err => console.error(err));
 
