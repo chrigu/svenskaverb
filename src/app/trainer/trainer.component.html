@@ -1,19 +1,14 @@
 <div class="trainer">
+    <!--<lang-selector (onChange)="changeLanguage($event)"></lang-selector>-->
     <div class="row">
         <div class="col-md-12">
-            <h1>trainer</h1>
+            <verb-panel [verb]="currentVerb$ | async" [showSolution]="verbState"></verb-panel>
         </div>
     </div>
-    <!--<lang-selector (onChange)="changeLanguage($event)"></lang-selector>-->
     <div class="row">
         <div class="col-md-12">
             <button *ngIf="verbState" (click)="showSolution()" class="btn btn-primary">Lösung zeigen</button>
             <button *ngIf="!verbState" (click)="getNewVerb()" class="btn btn-primary">Neues Verb</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <verb-panel [verb]="currentVerb$ | async" [showSolution]="verbState"></verb-panel>
         </div>
     </div>
 </div>
